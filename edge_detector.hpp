@@ -30,12 +30,4 @@ private:
     static cv::Mat applyThresholding(const cv::Mat& suppressed, float lowThreshold, float highThreshold);
 };
 
-cv::Mat cannyEdgeDetectionGray(const cv::Mat& src, double sigma = 1.4,
-                              float lowThresholdRatio = 0.05,
-                              float highThresholdRatio = 0.15);
-
-cv::Mat cannyEdgeDetectionColor(const cv::Mat& src, double sigma = 1.4,
-                               float lowThresholdRatio = 0.05,
-                               float highThresholdRatio = 0.15);
-
 #endif // EDGE_DETECTOR_HPP
