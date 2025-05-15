@@ -1,6 +1,9 @@
-# Edge Detection Application
+<img width="953" alt="image" src="https://github.com/user-attachments/assets/1cbf9844-e5ee-45ef-8088-f66ef167fa78" /># Edge Detection Application
 
 A C++ application implementing the Canny edge detection algorithm with support for both grayscale and color images. Built using OpenCV and modern C++17 features.
+
+<img width="953" alt="image" src="https://github.com/user-attachments/assets/0a77d277-a4de-4f8a-bfd0-eccb7c302874" />
+
 
 ⚠️ **Note:** This application is currently optimized for macOS and uses macOS-specific file dialog. It may not work correctly on other operating systems.
 
