@@ -28,7 +28,7 @@ private:
     struct Parameters {
         int lowThresholdRatio = 5;
         int highThresholdRatio = 15;
-        int sigmaValue = 14;
+        int sigmaValue = 4;
     } params;
 
     static constexpr int LABEL_HEIGHT = 30;

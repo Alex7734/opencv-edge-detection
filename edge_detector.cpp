@@ -107,7 +107,7 @@ void calculateGradientMagnitude(const cv::Mat& gxx, const cv::Mat& gyy,
         for (int x = 0; x < gxx.cols; x++) {
             float numerator = 2 * gxy.at<float>(y, x);
             float denominator = gxx.at<float>(y, x) - gyy.at<float>(y, x);
-            float theta = denominator < 0 ? CV_PI / 4.0 : 0.5 * std::atan2(numerator, denominator);
+            float theta = 0.5 * std::atan2(numerator, denominator);
 
             float cos2theta = std::cos(2 * theta);
             float sin2theta = std::sin(2 * theta);
@@ -138,8 +138,7 @@ void calculateGradientDirection(const cv::Mat& gxx, const cv::Mat& gyy,
         for (int x = 0; x < gxx.cols; x++) {
             float numerator = 2 * gxy.at<float>(y, x);
             float denominator = gxx.at<float>(y, x) - gyy.at<float>(y, x);
-            direction.at<float>(y, x) = denominator < 0 ?
-                CV_PI / 4.0 : 0.5 * std::atan2(numerator, denominator);
+            direction.at<float>(y, x) = 0.5 * atan2(numerator, denominator);
         }
     }
 }
@@ -153,6 +152,7 @@ GradientResult EdgeDetector::computeGrayGradients(const cv::Mat& image) {
     cv::Mat gradientX, gradientY;
     cv::Sobel(image, gradientX, CV_32F, 1, 0, 3);
     cv::Sobel(image, gradientY, CV_32F, 0, 1, 3);
+    gradientY = -gradientY;
 
     cv::Mat gxx, gyy, gxy;
     computeCoefficientsGray(gradientX, gradientY, gxx, gyy, gxy);
@@ -176,6 +176,7 @@ GradientResult EdgeDetector::computeColorGradients(const cv::Mat& image) {
     for (int i = 0; i < 3; i++) {
         cv::Sobel(channels[i], gradientX[i], CV_32F, 1, 0, 3);
         cv::Sobel(channels[i], gradientY[i], CV_32F, 0, 1, 3);
+        gradientY[i] = -gradientY[i];
     }
 
     cv::Mat gxx, gyy, gxy;
